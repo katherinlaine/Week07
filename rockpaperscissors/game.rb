@@ -25,7 +25,26 @@ class Round
   end
 
   def evaluate
-    if @play == @move
+    if @aiplay == @move
+      puts "tie!"
+    elsif @aiplay == "R" && @move == "P"
+      puts "Mr. AI played #{@aiplay}"
+      puts "#{@name} wins!"
+    elsif @aiplay == "P" && @move == "R"
+     puts "Mr. AI played #{@aiplay}"
+     puts "The machines rule now!"
+    elsif @aiplay == "S" && @move == "R"
+     puts "Mr. AI played #{@aiplay}"
+     puts "The machines rule now!"
+    elsif @aiplay == "R" && @move == "S"
+      puts "Mr. AI played #{@aiplay}"
+      puts "#{@name} wins!"
+    elsif @aiplay == "P" && @move == "S"
+      puts "Mr. AI played #{@aiplay}"
+      puts "#{@name} wins!"
+    elsif @aiplay == "S" && @move == "P"
+      puts "Mr. AI played #{@aiplay}"
+      puts "The machines rule now!" 
     end
   end
 end
