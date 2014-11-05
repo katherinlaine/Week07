@@ -25,6 +25,14 @@ class Game
   def results
     puts "You had #{@user.wins} wins, #{@user.losses} losses, and #{@user.ties} ties."
   end
+
+  def status
+    if total > 0
+      puts "So far, you have #{stat}% wins!"
+    else
+      puts "Let's get going!" 
+    end
+  end
 end
 
 a = Game.new("Katherin")

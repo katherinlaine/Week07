@@ -34,6 +34,10 @@ class Round
     if @move == "Q"
       return false
     end
+    unless PLAYS.include?(@move)
+      puts "Silly. That's not an option"
+      play
+    end
   end
 
   def prettyplay(play)
@@ -57,7 +61,7 @@ class Round
       end
     else
       if user_index > ai_index
-        return false 
+        return false
       else
         return true
       end
