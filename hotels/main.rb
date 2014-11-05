@@ -1,13 +1,10 @@
 require "csv"
-require "./hotel"
-require "./creator"
+require './records'
 
-batch = HotelCreator.new("hotels.csv")
-hotel_group = batch.create
+books = RecordSearch.new("hotels.csv")
+puts "What do you want to find?"
+search = gets.chomp
+books.find(search)
 
-
-hotel_group.each do |hotel|
-  puts hotel.name
-end
 
 

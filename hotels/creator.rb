@@ -1,14 +1,16 @@
 require "./hotel"
 
 class HotelCreator
+  attr_accessor :hotels
+
   def initialize(csv)
-    @hotels = []
     @csv = csv
+    @hotels = []
   end
 
   def create
     CSV.foreach(@csv, headers: true).map do |row|
-      Hotel.new(row)
+      hotels << Hotel.new(row)
     end
   end
 end
