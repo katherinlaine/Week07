@@ -1,10 +1,13 @@
-require 'csv'
-require './hotel'
+require "csv"
+require "./hotel"
+require "./creator"
 
-CSV.foreach("./hotels.csv") do |row|
-  puts row[0].inspect
+batch = HotelCreator.new("hotels.csv")
+hotel_group = batch.create
+
+
+hotel_group.each do |hotel|
+  puts hotel.name
 end
-
-
 
 

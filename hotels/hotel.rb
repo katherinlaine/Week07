@@ -1,9 +1,11 @@
 class Hotel
-  def initialize(hotel, city, phone, singles, doubles)
-    @hotel = hotel
-    @city = city
-    @phone = phone
-    @singles = singles
-    @doubles = doubles
+  attr_accessor :name, :city, :phone, :singles, :doubles
+
+  def initialize(data)
+    @name = data["Hotel"]
+    @city = data["City"]
+    @phone = data["Phone Number"]
+    @singles = data["Number of Singles"]
+    @doubles = data["Number of Doubles"]
   end
 end
