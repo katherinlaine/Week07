@@ -1,3 +1,5 @@
+require './user'
+
 class Round
   PLAYS = ["R", "P", "S"]
   PRETTY_PLAYS = {
@@ -6,14 +8,18 @@ class Round
     "S" => "Scissors"
   }
 
-  def initialize(name)
-    @name = name
+  def initialize(user)
+    @user = user
   end
 
   def play
     ai_play
-    get_input
-    evaluate
+    unless get_input == false
+      evaluate
+      report
+    else
+      return false
+    end
   end
 
   private
@@ -25,6 +31,9 @@ class Round
   def get_input
     puts "Your move: >"
     @move = gets.chomp.upcase
+    if @move == "Q"
+      return false
+    end
   end
 
   def prettyplay(play)
@@ -36,38 +45,38 @@ class Round
   end
 
   def evaluate
-    if @aiplay == @move
-      puts "tie!"
-    elsif @aiplay == "R" && @move == "P"
-      show_moves
-      puts "#{@name} wins!"
-    elsif @aiplay == "P" && @move == "R"
-      show_moves
-      puts "The machines rule now!"
-    elsif @aiplay == "S" && @move == "R"
-      show_moves
-      puts "The machines rule now!"
-    elsif @aiplay == "R" && @move == "S"
-      show_moves
-      puts "#{@name} wins!"
-    elsif @aiplay == "P" && @move == "S"
-      show_moves
-      puts "#{@name} wins!"
-    elsif @aiplay == "S" && @move == "P"
-      show_moves
-      puts "The machines rule now!" 
-    elsif @move == "Q"
-      puts "Goodbye!"
+    user_index = PLAYS.index(@move)
+    ai_index = PLAYS.index(@aiplay)
+    if user_index == ai_index
+      return "TIE"
+    elsif (user_index - ai_index).abs == 1
+      if user_index > ai_index
+        return true
+      elsif user_index < ai_index
+        return false
+      end
     else
-      puts "I don't think you entered a real move..."
+      if user_index > ai_index
+        return false 
+      else
+        return true
+      end
     end
   end
 
-  def evaluate
-    if (PLAYS.index(@move) - PLAYS.index(@aiplay)).abs == 1
-      max wins
+  def report
+    if evaluate == true
+      show_moves
+      puts "You win!"
+      @user.wins += 1
+    elsif evaluate == "TIE"
+      show_moves
+      puts "It's a tie!"
+      @user.ties += 1
     else
-      min wins
+      show_moves
+      puts "Ze machines ween agaaain!"
+      @user.losses +=1
     end
   end
 end
