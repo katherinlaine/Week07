@@ -7,7 +7,7 @@ class Player
 
   def display_cards
     puts @hand
-    puts "    " 
+    puts 
   end
 end
 
