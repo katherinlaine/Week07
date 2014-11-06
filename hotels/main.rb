@@ -1,5 +1,6 @@
 require "./hotel"
 require "csv"
+require "./nullhotel"
 
 class Main
   def initialize
@@ -29,7 +30,8 @@ class Main
   def search
     print "What property: >"
     search = gets.chomp
-    puts @hotels.find {|hotel| hotel.name == search }.information
+    result =  @hotels.find {|hotel| hotel.name == search } || NullHotel.new
+    puts result.information
   end
 end
 
