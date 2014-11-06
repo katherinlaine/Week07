@@ -2,6 +2,7 @@ require './round'
 require './user'
 
 class Game
+
   def initialize(player)
     @player = player
   end
@@ -11,6 +12,7 @@ class Game
     greeting
     while true
       round = Round.new(@user)
+      status
       unless round.play
         break
       end
@@ -27,7 +29,9 @@ class Game
   end
 
   def status
+    total = @user.wins + @user.losses + @user.ties
     if total > 0
+      stat = (@user.wins.to_f / total)*100
       puts "So far, you have #{stat}% wins!"
     else
       puts "Let's get going!" 
