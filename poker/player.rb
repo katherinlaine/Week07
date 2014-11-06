@@ -1,12 +1,13 @@
-require './hand'
-require './deck'
-
 class Player
-  attr_reader :name, :hand
+  attr_reader :hand
 
-  def initialize(name)
-    @name = name
-    get_hand
+  def initialize
+    @hand = []
+  end
+
+  def display_cards
+    puts @hand
+    puts "    " 
   end
 end
 

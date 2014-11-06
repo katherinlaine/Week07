@@ -1,10 +1,10 @@
 class Card
-  DISPlAY_NUM = {
+  DISPLAY_NUM = {
     11 => "Jack",
     12 => "Queen",
     13 => "King",
     14 => "Ace",
-    }
+  }
 
   def initialize(suit, face)
     @suit = suit
@@ -12,13 +12,13 @@ class Card
   end
 
   def to_s
-    "#{display_number} of #{@suit}"
+    "#{display_number(@face)} of #{@suit}"
   end
 
   private
 
-  def display_number
-    DISPLAY_NUM.fetch(@face, @face)
+  def display_number(face)
+    DISPLAY_NUM.fetch(face, face)
   end
 end
 
